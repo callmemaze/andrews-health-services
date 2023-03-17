@@ -8,6 +8,8 @@ import dotenv from "dotenv";
 import user from "../models/userModel.js";
 import servicesModel from "../models/services.js";
 import appointmentModel from "../models/appointment.js";
+import pharmacyModel from "../models/pharmacy.js";
+import uploadFileFeature from "@admin-bro/upload";
 dotenv.config();
 
 const sessionStorage = {
@@ -33,7 +35,30 @@ const locale = {
 const Admin = new adminjs({
   databases: [mongoose],
   rootPath: "/admin",
-  resources: [user, servicesModel, appointmentModel],
+  resources: [
+    user,
+    servicesModel,
+    appointmentModel,
+    {
+      resource: pharmacyModel,
+      options: {
+        properties: { uploadedFile: { isVisible: false } },
+      },
+      features: [
+        uploadFileFeature({
+          provider: { local: { bucket: "uploads" } },
+          properties: {
+            key: "uploadedFile.path",
+            bucket: "uploadedFile.folder",
+            mimeType: "uploadedFile.type",
+            size: "uploadedFile.size",
+            filename: "uploadedFile.filename",
+            file: "uploadFile",
+          },
+        }),
+      ],
+    },
+  ],
   locale: locale,
 
   branding: {
