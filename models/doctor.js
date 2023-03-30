@@ -8,6 +8,7 @@ const doctorSchema = mongoose.Schema({
   timing: { type: String, required: true },
   education: { type: String, required: true },
   availability: { type: Boolean, default: true },
+  profileImage: { type: String, required: false },
 });
 
 export default mongoose.model("doctor", doctorSchema);
