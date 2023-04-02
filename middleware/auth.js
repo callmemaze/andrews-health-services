@@ -11,6 +11,7 @@ const auth = async (req, res, next) => {
     if (!authToken) return res.status(403).json("You don't have authority");
 
     const token = req.headers.authorization.split(" ")[1];
+
     const isCustomAuth = token.length < 500;
 
     let decodedData;
