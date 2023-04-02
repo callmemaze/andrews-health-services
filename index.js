@@ -5,7 +5,9 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import adminRoutes from "./routes/admin.js";
 import userRoutes from "./routes/user.js";
+import appointmentRoutes from "./routes/appoinment.js";
 import pharmacyRoutes from "./routes/pharmacy.js";
+import doctorRoutes from "./routes/doctor.js";
 dotenv.config();
 
 const app = express();
@@ -17,9 +19,9 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.static("public"));
 app.use(express.static("components"));
 app.use("/api/users/", userRoutes);
-
+app.use("/api/appointment/", appointmentRoutes);
 app.use("/api/pharmacy/", pharmacyRoutes);
-
+app.use("/api/doctor/", doctorRoutes);
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URI = process.env.CONNECTION_URI;
 

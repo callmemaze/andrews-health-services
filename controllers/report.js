@@ -13,7 +13,7 @@ export const generateReport = async (req, res) => {
 export const createReport = async (req, res) => {
   try {
     const report = req.body;
-    const newReport = new Booking({
+    const newReport = new reportModel({
       ...report,
       userId: req.userId,
     });
