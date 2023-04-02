@@ -47,7 +47,7 @@ const Admin = new adminjs({
       options: {
         properties: {
           profileImage: {
-            isVisible: false,
+            isVisible: true,
           },
         },
       },

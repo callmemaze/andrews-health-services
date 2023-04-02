@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
 
+const UploadedFile = new mongoose.Schema({
+  path: String,
+  type: String,
+  size: Number,
+  folder: String,
+  filename: String,
+});
+
 const doctorSchema = mongoose.Schema({
   name: { type: String, required: true },
   phone: { type: String, required: true },
@@ -8,7 +16,7 @@ const doctorSchema = mongoose.Schema({
   timing: { type: String, required: true },
   education: { type: String, required: true },
   availability: { type: Boolean, default: true },
-  profileImage: { type: String, required: false },
+  uploadedFile: UploadedFile,
 });
 
 export default mongoose.model("doctor", doctorSchema);
