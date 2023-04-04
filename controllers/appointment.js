@@ -8,7 +8,7 @@ export const createAppointment = async (req, res) => {
       ...appointment,
       userId: req.userId,
     });
-    await newbooking.save();
+    await newAppointment.save();
     res.status(201).json(newAppointment);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -23,4 +23,3 @@ export const getAppointment = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-
