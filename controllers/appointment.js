@@ -4,9 +4,10 @@ import appointmentModel from "../models/appointment.js";
 export const createAppointment = async (req, res) => {
   try {
     const appointment = req.body;
+    const user = req.userId;
     const newAppointment = new appointmentModel({
       ...appointment,
-      userId: req.userId,
+      userId: user,
     });
     await newAppointment.save();
     res.status(201).json(newAppointment);
