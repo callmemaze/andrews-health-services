@@ -11,6 +11,7 @@ const appointmentSchema = mongoose.Schema({
   address: { type: String, required: true },
   appointmentDate: { type: Date, default: Date.now() },
   instructions: { type: String, required: false },
+  charge: { type: String, default: "1000" },
   userId: { type: String },
 });
 
