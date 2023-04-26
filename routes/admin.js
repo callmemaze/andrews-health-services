@@ -11,7 +11,7 @@ import appointmentModel from "../models/appointment.js";
 import doctorModel from "../models/doctor.js";
 import pharmacyModel from "../models/pharmacy.js";
 import uploadFileFeature from "@adminjs/upload";
-
+import reportModel from "../models/report.js";
 dotenv.config();
 
 const sessionStorage = {
@@ -40,8 +40,8 @@ const Admin = new adminjs({
 
   resources: [
     user,
-    servicesModel,
     appointmentModel,
+    reportModel,
     {
       resource: doctorModel,
       options: {
@@ -67,6 +67,29 @@ const Admin = new adminjs({
     },
     {
       resource: pharmacyModel,
+      options: {
+        properties: {
+          uploadedFile: {
+            isVisible: false,
+          },
+        },
+      },
+      features: [
+        uploadFileFeature({
+          provider: { local: { bucket: "uploads" } },
+          properties: {
+            key: "uploadedFile.path",
+            bucket: "uploadedFile.folder",
+            mimeType: "uploadedFile.type",
+            size: "uploadedFile.size",
+            filename: "uploadedFile.filename",
+            file: "uploadFile",
+          },
+        }),
+      ],
+    },
+    {
+      resource: servicesModel,
       options: {
         properties: {
           uploadedFile: {
