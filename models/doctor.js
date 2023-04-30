@@ -16,6 +16,7 @@ const doctorSchema = mongoose.Schema({
   timing: { type: String, required: true },
   education: { type: String, required: true },
   availability: { type: Boolean, default: true },
+  description: { type: String, required: false },
   favorites: { type: Array, default: [] },
   uploadedFile: UploadedFile,
 });
