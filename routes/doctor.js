@@ -11,5 +11,5 @@ const router = express.Router();
 router.get("/", auth, getDoctor);
 router.post("/search-designation", auth, searchDesignation);
 router.get("/favourite", auth, getFavorite);
-router.post("/favourite-doctor", auth, favoriteDoctor);
+router.post("/favourite-doctor/:id", auth, favoriteDoctor);
 export default router;

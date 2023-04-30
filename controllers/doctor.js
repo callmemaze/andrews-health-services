@@ -45,40 +45,26 @@ export const favoriteDoctor = async (req, res) => {
 
   const isFav = await doctorModel.findById(id);
   if (isFav.favorites.includes(req.userId)) {
-    await doctorModel
-      .findByIdAndUpdate(
-        id,
-        {
-          $pull: { favorites: req.userId },
-        },
-        {
-          new: true,
-        }
-      )
-      .exec((err, result) => {
-        if (err) {
-          return res.status(422).json({ error: err });
-        } else {
-          res.json(result);
-        }
-      });
+    await doctorModel.findByIdAndUpdate(
+      id,
+      {
+        $pull: { favorites: req.userId },
+      },
+      {
+        new: true,
+      }
+    );
+    res.status(201).json({ message: "Removed from favourites" });
   } else {
-    await doctorModel
-      .findByIdAndUpdate(
-        id,
-        {
-          $push: { favorites: req.userId },
-        },
-        {
-          new: true,
-        }
-      )
-      .exec((err, result) => {
-        if (err) {
-          return res.status(422).json({ error: err });
-        } else {
-          res.json(result);
-        }
-      });
+    await doctorModel.findByIdAndUpdate(
+      id,
+      {
+        $push: { favorites: req.userId },
+      },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json({ message: "Added to favourites" });
   }
 };
