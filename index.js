@@ -23,7 +23,7 @@ app.use("/api/users/", userRoutes);
 app.use("/api/appointment/", appointmentRoutes);
 app.use("/api/pharmacy/", pharmacyRoutes);
 app.use("/api/doctor/", doctorRoutes);
-app.use("api/services/", servicesRoutes);
+app.use("/api/services/", servicesRoutes);
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URI = process.env.CONNECTION_URI;
 
