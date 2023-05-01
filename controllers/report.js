@@ -4,7 +4,7 @@ import reportModel from "../models/report.js";
 export const generateReport = async (req, res) => {
   try {
     const report = await reportModel
-      .find({ userId: req.userId })
+      .find({ user: req.userId })
       .sort({ _id: -1 });
     res.status(200).json({ report });
   } catch (error) {
