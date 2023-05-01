@@ -122,7 +122,7 @@ const Admin = new adminjs({
   branding: {
     companyName: "Andrew Health Service",
     softwareBrothers: false,
-    logo: "/andrews_health_logo.png",
+    logo: "/Andrew_health_service_new.png",
     withMadeWithLove: false,
   },
 });
