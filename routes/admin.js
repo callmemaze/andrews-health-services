@@ -14,6 +14,7 @@ import uploadFileFeature from "@adminjs/upload";
 import reportModel from "../models/report.js";
 import feedback from "../models/feedback.js";
 import news from "../models/news.js";
+import designation from "../models/designation.js";
 dotenv.config();
 
 const sessionStorage = {
@@ -45,6 +46,7 @@ const Admin = new adminjs({
     reportModel,
     feedback,
     news,
+    designation,
     {
       resource: doctorModel,
       options: {
