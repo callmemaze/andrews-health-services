@@ -12,6 +12,8 @@ import doctorModel from "../models/doctor.js";
 import pharmacyModel from "../models/pharmacy.js";
 import uploadFileFeature from "@adminjs/upload";
 import reportModel from "../models/report.js";
+import feedback from "../models/feedback.js";
+import news from "../models/news.js";
 dotenv.config();
 
 const sessionStorage = {
@@ -37,11 +39,12 @@ const locale = {
 const Admin = new adminjs({
   databases: [mongoose],
   rootPath: "/admin",
-
   resources: [
     user,
     appointmentModel,
     reportModel,
+    feedback,
+    news,
     {
       resource: doctorModel,
       options: {

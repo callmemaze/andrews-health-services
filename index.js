@@ -9,6 +9,9 @@ import appointmentRoutes from "./routes/appoinment.js";
 import pharmacyRoutes from "./routes/pharmacy.js";
 import doctorRoutes from "./routes/doctor.js";
 import servicesRoutes from "./routes/services.js";
+import feedbackRoutes from "./routes/feedback.js";
+import newsRoutes from "./routes/news.js";
+import reportRoutes from "./routes/report.js";
 dotenv.config();
 
 const app = express();
@@ -24,6 +27,10 @@ app.use("/api/appointment/", appointmentRoutes);
 app.use("/api/pharmacy/", pharmacyRoutes);
 app.use("/api/doctor/", doctorRoutes);
 app.use("/api/services/", servicesRoutes);
+app.use("/api/feedback/", feedbackRoutes);
+app.use("/api/news/", newsRoutes);
+app.use("/api/report/", reportRoutes);
+
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URI = process.env.CONNECTION_URI;
 
