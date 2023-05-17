@@ -73,6 +73,9 @@ export const forgotPassword = async (req, res) => {
 export const verifyResetPassword = async (req, res) => {
   try {
     const { email, otp } = req.body;
+    if (!otp) {
+      return res.status(200).json({ message: "Please enter OTP" });
+    }
     twilio.verify.v2
       .services(process.env.TWILIO_SERVICE_ID)
       .verificationChecks.create({ to: email, code: otp })
@@ -86,11 +89,14 @@ export const verifyResetPassword = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
   try {
-    const { id, password } = req.body;
+    const { email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 12);
-    const users = await UserModal.findByIdAndUpdate(id, {
-      password: hashedPassword,
-    });
+    const users = await UserModal.findOneAndUpdate(
+      { email },
+      {
+        password: hashedPassword,
+      }
+    );
     res.status(201).json({ message: "Password reset" });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
